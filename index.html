@@ -32,15 +32,44 @@
 
 
     <!-- ANA MENÜ -->
-    <div id="main-menu" class="hidden">
-        <h2>Ana Menü</h2>
-        <button onclick="openGelir()">Gelir Ekle</button>
-        <button onclick="openGider()">Gider Ekle</button>
-        <button onclick="openEvent()">Event Ekle</button>
-        <button onclick="openEventList()">Event Listesi</button>
-        <button onclick="openRapor()">Raporlar</button>
-        <button onclick="openListe()">Kayıtları Gör</button>
+    <div id="main-menu" class="hidden main-menu-container">
+        <h2 class="menu-title">Ana Menü</h2>
+
+        <div class="menu-grid">
+
+            <div class="menu-item" onclick="openGelir()">
+                <div class="menu-icon">💰</div>
+                <div class="menu-text">Gelir Ekle</div>
+            </div>
+
+            <div class="menu-item" onclick="openGider()">
+                <div class="menu-icon">📄</div>
+                <div class="menu-text">Gider Ekle</div>
+            </div>
+
+            <div class="menu-item" onclick="openEvent()">
+                <div class="menu-icon">📌</div>
+                <div class="menu-text">Event Ekle</div>
+            </div>
+
+            <div class="menu-item" onclick="openEventList()">
+                <div class="menu-icon">📋</div>
+                <div class="menu-text">Event Listesi</div>
+            </div>
+
+            <div class="menu-item" onclick="openRapor()">
+                <div class="menu-icon">📊</div>
+                <div class="menu-text">Raporlar</div>
+            </div>
+
+            <div class="menu-item" onclick="openListe()">
+                <div class="menu-icon">📁</div>
+                <div class="menu-text">Kayıtlar</div>
+            </div>
+
+        </div>
     </div>
+
 
     <!-- GELİR -->
     <div id="gelir-screen" class="hidden gelir-container">
