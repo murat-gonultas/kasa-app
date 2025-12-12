@@ -32,64 +32,69 @@
 
 
     <!-- ANA MENÜ -->
-    <div id="main-menu" class="hidden main-menu-container">
+    <div id="main-menu" class="hidden menu-container">
+
         <h2 class="menu-title">Ana Menü</h2>
 
         <div class="menu-grid">
 
-            <div class="menu-item" onclick="openGelir()">
-                <div class="menu-icon">💰</div>
-                <div class="menu-text">Gelir Ekle</div>
+            <div class="menu-card" onclick="openGelir()">
+                <img src="icons/gelir.png">
+                <span>Gelir Ekle</span>
             </div>
 
-            <div class="menu-item" onclick="openGider()">
-                <div class="menu-icon">📄</div>
-                <div class="menu-text">Gider Ekle</div>
+            <div class="menu-card" onclick="openGider()">
+                <img src="icons/gider.png">
+                <span>Gider Ekle</span>
             </div>
 
-            <div class="menu-item" onclick="openEvent()">
-                <div class="menu-icon">📌</div>
-                <div class="menu-text">Event Ekle</div>
+            <div class="menu-card" onclick="openEvent()">
+                <img src="icons/event.png">
+                <span>Event Ekle</span>
             </div>
 
-            <div class="menu-item" onclick="openEventList()">
-                <div class="menu-icon">📋</div>
-                <div class="menu-text">Event Listesi</div>
+            <div class="menu-card" onclick="openEventList()">
+                <img src="icons/event_list.png">
+                <span>Event Listesi</span>
             </div>
 
-            <div class="menu-item" onclick="openRapor()">
-                <div class="menu-icon">📊</div>
-                <div class="menu-text">Raporlar</div>
+            <div class="menu-card" onclick="openRapor()">
+                <img src="icons/rapor.png">
+                <span>Raporlar</span>
             </div>
 
-            <div class="menu-item" onclick="openListe()">
-                <div class="menu-icon">📁</div>
-                <div class="menu-text">Kayıtlar</div>
+            <div class="menu-card" onclick="openListe()">
+                <img src="icons/folder.png">
+                <span>Kayıtlar</span>
             </div>
-
         </div>
+
     </div>
+
 
 
     <!-- GELİR -->
-    <div id="gelir-screen" class="hidden gelir-container">
-        <h2>Gelir Ekle</h2>
+    <div id="gelir-screen" class="hidden screen-container">
+        <div class="screen-card">
+            <h2 class="screen-title">Gelir Ekle</h2>
 
-        <label>Tarih</label>
-        <input type="date" id="gelir-tarih">
+            <label>Tarih</label>
+            <input type="date" id="gelir-tarih">
 
-        <label>Nakit (€)</label>
-        <input type="number" id="gelir-nakit">
+            <label>Nakit (€)</label>
+            <input type="number" id="gelir-nakit">
 
-        <label>Kredi (€)</label>
-        <input type="number" id="gelir-kredi">
+            <label>Kredi (€)</label>
+            <input type="number" id="gelir-kredi">
 
-        <label>Delivery (€)</label>
-        <input type="number" id="gelir-delivery">
+            <label>Delivery (€)</label>
+            <input type="number" id="gelir-delivery">
 
-        <button onclick="kaydetGelir()">Kaydet</button>
-        <button class="cancel-btn" onclick="closeGelir()">Geri</button>
+            <button onclick="kaydetGelir()">Kaydet</button>
+            <button class="cancel-btn" onclick="closeGelir()">Geri</button>
+        </div>
     </div>
+
 
     <!-- GİDER -->
     <div id="gider-screen" class="hidden">
