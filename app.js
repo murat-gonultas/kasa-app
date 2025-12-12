@@ -29,7 +29,7 @@ function createChessboard() {
                 setTimeout(() => square.classList.remove("clicked"), 350);
 
                 userPattern.push(coord);
-                checkPattern();
+                checkPattern(square);
             });
 
 
@@ -44,39 +44,36 @@ function shakeBoard() {
     setTimeout(() => board.classList.remove("shake"), 400);
 }
 
-function checkPattern() {
+function checkPattern(clickedSquare) {
+
+    // 1) Tıklanan kareye animasyon ekle
+    clickedSquare.classList.remove("clicked"); // animasyonu resetle
+    void clickedSquare.offsetWidth;           // CSS reflow trick
+    clickedSquare.classList.add("clicked");
+
+    // 2) Pattern kontrolü
     if (userPattern.length === 1) {
         if (userPattern[0] === correctPattern[0]) {
 
             const board = document.getElementById("chessboard");
-
-            // Tahta başarı animasyonu
             board.classList.add("success");
 
-            // 1) Tahta yok olduktan sonra login ekranı kayarak kapanacak
-            setTimeout(() => {
-                document.getElementById("login-screen").classList.add("slide-out");
-            }, 800); // tahta animasyonu bittiği anda
+            document.getElementById("login-screen").classList.add("slide-out");
 
-            // 2) Login tamamen kaybolunca ana menü fade-in olur
             setTimeout(() => {
                 document.getElementById("login-screen").classList.add("hidden");
-                const menu = document.getElementById("main-menu");
-                menu.classList.remove("hidden");
-                menu.classList.add("fade-in");
-            }, 1600);
+                document.getElementById("main-menu").classList.remove("hidden");
+                document.getElementById("main-menu").classList.add("fade-in");
+            }, 900);
+
         } else {
-            const errorBox = document.getElementById("error-box");
-            errorBox.classList.remove("hidden");
-
-            setTimeout(() => {
-                errorBox.classList.add("hidden");
-            }, 2000);
-
+            // Yanlış kare → sadece pattern reset
             userPattern = [];
         }
     }
 }
+
+
 
 function resetScreens() {
     document.querySelectorAll("body > div").forEach(div => {
