@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChessBoard Login</title>
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="app.js"></script>
+</head>
+
+<body>
+
+    <!-- LOGIN -->
+    <div id="login-screen">
+        <h2 class="title">♟ Gizli Giriş</h2>
+        <p class="subtitle">Satranç tahtasında doğru kareye tıkla</p>
+        <div id="chessboard"></div>
+    </div>
+
+    <!-- ANA MENÜ -->
+    <div id="main-menu" class="hidden">
+        <h2>Ana Menü</h2>
+        <button onclick="openGelir()">Gelir Ekle</button>
+        <button onclick="openGider()">Gider Ekle</button>
+        <button onclick="openEvent()">Event Ekle</button>
+        <button onclick="openEventList()">Event Listesi</button>
+        <button onclick="openRapor()">Raporlar</button>
+        <button onclick="openListe()">Kayıtları Gör</button>
+    </div>
+
+    <!-- GELİR -->
+    <div id="gelir-screen" class="hidden gelir-container">
+        <h2>Gelir Ekle</h2>
+
+        <label>Tarih</label>
+        <input type="date" id="gelir-tarih">
+
+        <label>Nakit (€)</label>
+        <input type="number" id="gelir-nakit">
+
+        <label>Kredi (€)</label>
+        <input type="number" id="gelir-kredi">
+
+        <label>Delivery (€)</label>
+        <input type="number" id="gelir-delivery">
+
+        <button onclick="kaydetGelir()">Kaydet</button>
+        <button class="cancel-btn" onclick="closeGelir()">Geri</button>
+    </div>
+
+    <!-- GİDER -->
+    <div id="gider-screen" class="hidden">
+        <h2>Gider Ekle</h2>
+
+        <label>Tarih:</label>
+        <input type="date" id="gider-tarih">
+
+        <label>Tutar (€):</label>
+        <input type="number" id="gider-tutar">
+
+        <label>Açıklama:</label>
+        <input type="text" id="gider-aciklama">
+
+        <button onclick="kaydetGider()">Kaydet</button>
+        <button class="cancel-btn" onclick="closeGider()">Geri</button>
+    </div>
+
+    <!-- RAPOR -->
+    <div id="rapor-screen" class="hidden">
+        <h2>Raporlar</h2>
+
+        <label>Başlangıç Tarihi:</label>
+        <input type="date" id="rapor-baslangic">
+
+        <label>Bitiş Tarihi:</label>
+        <input type="date" id="rapor-bitis">
+
+        <button onclick="cekRapor()">Raporu Getir</button>
+        <button class="cancel-btn" onclick="closeRapor()">Geri</button>
+
+        <div id="rapor-sonuc" style="margin-top:20px; font-size:18px;"></div>
+    </div>
+
+    <!-- KAYITLARI LİSTE -->
+    <div id="liste-screen" class="hidden">
+        <h2>Kayıtlar</h2>
+
+        <button onclick="loadKayitlar()">Yenile</button>
+        <button class="cancel-btn" onclick="closeListe()">Geri</button>
+
+        <h3>Gelir Kayıtları</h3>
+        <div id="gelir-liste"></div>
+
+        <h3>Gider Kayıtları</h3>
+        <div id="gider-liste"></div>
+    </div>
+
+    <!-- EVENT EKLE -->
+    <div id="event-screen" class="hidden">
+        <h2>Event Ekle</h2>
+
+        <label>Tarih:</label>
+        <input type="date" id="event-tarih">
+
+        <label>Event Türü:</label>
+        <select id="event-secim">
+            <option value="">Seçiniz…</option>
+            <option value="Okul Tatili">Okul Tatili</option>
+            <option value="Resmi Tatil">Resmi Tatil</option>
+            <option value="Hava Durumu Cok Soguk">Hava Durumu Çok Soğuk</option>
+            <option value="Hava Durumu Asiri Yagisli">Hava Durumu Aşırı Yağışlı</option>
+            <option value="Hava Durumu Cok Sicak">Hava Durumu Çok Sıcak</option>
+            <option value="Angebot Zamani">Angebot Zamanı</option>
+            <option value="diger">Diğer…</option>
+        </select>
+
+        <div id="event-manu" class="hidden">
+            <label>Manuel Event:</label>
+            <input type="text" id="event-manu-text">
+        </div>
+
+        <button onclick="kaydetEvent()">Kaydet</button>
+        <button class="cancel-btn" onclick="closeEvent()">Geri</button>
+    </div>
+
+    <!-- EVENT LİSTESİ -->
+    <div id="event-list-screen" class="hidden">
+        <h2>Event Listesi</h2>
+
+        <button onclick="loadEventList()">Yenile</button>
+        <button class="cancel-btn" onclick="closeEventList()">Geri</button>
+
+        <div id="event-list"></div>
+    </div>
+
+    <!-- GELİR DÜZENLEME -->
+    <div id="edit-gelir-modal" class="hidden modal">
+        <h3>Gelir Düzenle</h3>
+
+        <label>Tarih:</label>
+        <input type="date" id="edit-gelir-tarih">
+
+        <label>Nakit:</label>
+        <input type="number" id="edit-gelir-nakit">
+
+        <label>Kredi:</label>
+        <input type="number" id="edit-gelir-kredi">
+
+        <label>Delivery:</label>
+        <input type="number" id="edit-gelir-delivery">
+
+        <button onclick="kaydetGelirDuzenleme()">Kaydet</button>
+        <button onclick="document.getElementById('edit-gelir-modal').classList.add('hidden')">Kapat</button>
+    </div>
+
+    <!-- GİDER DÜZENLEME -->
+    <div id="edit-gider-modal" class="hidden modal">
+        <h3>Gider Düzenle</h3>
+
+        <label>Tarih:</label>
+        <input type="date" id="edit-gider-tarih">
+
+        <label>Tutar:</label>
+        <input type="number" id="edit-gider-tutar">
+
+        <label>Açıklama:</label>
+        <input type="text" id="edit-gider-aciklama">
+
+        <button onclick="kaydetGiderDuzenleme()">Kaydet</button>
+        <button onclick="document.getElementById('edit-gider-modal').classList.add('hidden')">Kapat</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+</body>
+</html>
