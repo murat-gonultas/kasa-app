@@ -234,3 +234,44 @@ body {
         box-shadow: 0 0 0px rgba(0,180,255,0);
     }
 }
+
+/* Login ekranı kapanış animasyonu */
+#login-screen.slide-out {
+    animation: loginSlideOut 0.9s ease forwards;
+}
+
+@keyframes loginSlideOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0px);
+    }
+    40% {
+        opacity: 0.7;
+        transform: translateY(-20px);
+        filter: blur(2px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-60px);
+        filter: blur(6px);
+    }
+}
+
+/* Ana menünün soft fade-in animasyonu */
+#main-menu.fade-in {
+    animation: mainFadeIn 0.7s ease forwards;
+}
+
+@keyframes mainFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+        filter: blur(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0px);
+    }
+}

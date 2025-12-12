@@ -47,26 +47,34 @@ function shakeBoard() {
 function checkPattern() {
     if (userPattern.length === 1) {
         if (userPattern[0] === correctPattern[0]) {
+
             const board = document.getElementById("chessboard");
 
-            // Başarı animasyonunu başlat
+            // Tahta başarı animasyonu
             board.classList.add("success");
 
-            // Animasyon bitince ekrana geçiş
+            // 1) Tahta yok olduktan sonra login ekranı kayarak kapanacak
+            setTimeout(() => {
+                document.getElementById("login-screen").classList.add("slide-out");
+            }, 800); // tahta animasyonu bittiği anda
+
+            // 2) Login tamamen kaybolunca ana menü fade-in olur
             setTimeout(() => {
                 document.getElementById("login-screen").classList.add("hidden");
-                document.getElementById("main-menu").classList.remove("hidden");
-            }, 800); // animasyon süresi ile aynı
-        }   else {
-                    const errorBox = document.getElementById("error-box");
-                    errorBox.classList.remove("hidden");
+                const menu = document.getElementById("main-menu");
+                menu.classList.remove("hidden");
+                menu.classList.add("fade-in");
+            }, 1600);
+        } else {
+            const errorBox = document.getElementById("error-box");
+            errorBox.classList.remove("hidden");
 
-                    setTimeout(() => {
-                        errorBox.classList.add("hidden");
-                    }, 2000);
+            setTimeout(() => {
+                errorBox.classList.add("hidden");
+            }, 2000);
 
-                    userPattern = [];
-                }
+            userPattern = [];
+        }
     }
 }
 
