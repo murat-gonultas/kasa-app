@@ -5,6 +5,10 @@ const correctPattern = ["a1"];
 let userPattern = [];
 
 function createChessboard() {
+    setTimeout(() => {
+        document.getElementById("chessboard").classList.remove("hidden");
+    }, 1200);
+
     const board = document.getElementById("chessboard");
     const files = ["a", "b", "c", "d", "e", "f", "g", "h"];
 
@@ -20,6 +24,9 @@ function createChessboard() {
             square.dataset.pos = coord;
 
             square.addEventListener("click", () => {
+                // Her tıklamada hata mesajını sıfırla
+                document.getElementById("error-box").style.display = "none";
+
                 userPattern.push(coord);
                 checkPattern();
             });
@@ -35,7 +42,7 @@ function checkPattern() {
             document.getElementById("login-screen").classList.add("hidden");
             document.getElementById("main-menu").classList.remove("hidden");
         } else {
-            alert("Yanlış kare!");
+            document.getElementById("error-box").style.display = "block";
             userPattern = [];
         }
     }

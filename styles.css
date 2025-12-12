@@ -1,92 +1,187 @@
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Inter', Arial, sans-serif;
-    background: #f2f4f7;
-    color: #333;
-}
-
 .hidden {
     display: none !important;
 }
 
-h2, h3 {
-    text-align: center;
-    font-weight: 600;
+
+/* -------------------------------------------------
+   GLOBAL AYARLAR
+------------------------------------------------- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+    background: radial-gradient(circle at top, #2a2a33 0%, #111118 80%);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+/* -------------------------------------------------
+   LOGIN KAPSAYICI
+------------------------------------------------- */
+#login-screen {
+    text-align: center;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.subtitle {
+    opacity: 0.8;
+    margin-bottom: 18px;
+}
+
+/* -------------------------------------------------
+   LOADING SPINNER (Connecting...)
+------------------------------------------------- */
+#loading-box {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loading-spinner {
+    width: 34px;
+    height: 34px;
+    border: 4px solid rgba(255,255,255,0.2);
+    border-top-color: #4e8cff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.loading-text {
+    margin-top: 8px;
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+/* Spinner Animasyonu */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Fade-in animasyonu */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+}
+
+/* -------------------------------------------------
+   CHESSBOARD TASARIMI (Modern Glass / Neon)
+------------------------------------------------- */
 #chessboard {
-    width: 320px;
-    height: 320px;
+    width: 300px;
+    height: 300px;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
-    margin: 20px auto;
-    border-radius: 10px;
+    margin: auto;
+    border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
 }
 
 .square {
-    width: 100%;
-    height: 100%;
+    transition: 0.15s ease;
 }
 
-.light { background: #f0d9b5; }
-.dark  { background: #b58863; }
-
-input, select {
-    width: 100%;
-    padding: 12px;
-    margin-top: 8px;
-    margin-bottom: 12px;
-    border-radius: 10px;
-    border: 1px solid #dadce0;
-    font-size: 16px;
+/* Açık ve koyu kareler */
+.light {
+    background: rgba(255,255,255,0.15);
 }
 
-button {
-    width: 90%;
-    padding: 14px;
-    margin: 10px auto;
-    display: block;
-    border: none;
-    border-radius: 12px;
-    background: #4a6cf7;
-    color: white;
-    font-size: 17px;
-    font-weight: 600;
+.dark {
+    background: rgba(0,0,0,0.25);
+}
+
+/* Hover efekti */
+.square:hover {
+    outline: 2px solid rgba(78,140,255,0.6);
+    transform: scale(1.04);
     cursor: pointer;
+    z-index: 2;
 }
 
-button:hover {
-    background: #3553d8;
+/* -------------------------------------------------
+   HATA KARTI (Wrong square / Network error)
+------------------------------------------------- */
+#error-box {
+    background: rgba(255,50,50,0.15);
+    border: 1px solid rgba(255,80,80,0.4);
+    color: #ff8080;
+    padding: 12px 16px;
+    margin-top: 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    display: none; /* JS ile açılacak */
+    backdrop-filter: blur(6px);
 }
 
-button.cancel-btn {
-    background: #999;
+/* -------- Login Screen Modern Look -------- */
+
+#login-screen {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, #2a2d37, #1a1c22 70%);
+    color: white;
 }
 
-button.cancel-btn:hover {
-    background: #777;
+.login-container {
+    text-align: center;
 }
 
-.card {
-    background: white;
-    padding: 16px;
-    margin: 12px;
-    border-radius: 14px;
-    box-shadow: 0px 3px 10px rgba(0,0,0,0.08);
+.logo {
+    font-size: 70px;
+    margin-bottom: 10px;
+    opacity: 0.9;
 }
 
-.modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 85%;
-    background: white;
-    padding: 20px;
-    border-radius: 14px;
-    box-shadow: 0px 5px 20px rgba(0,0,0,0.25);
-    z-index: 1000;
+.title {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* ------------ Loader Circle ---------- */
+.loader {
+    width: 38px;
+    height: 38px;
+    border: 4px solid rgba(255,255,255,0.2);
+    border-top-color: #4eb6ff;
+    border-radius: 50%;
+    animation: spin 1.1s linear infinite;
+    margin: 0 auto 10px auto;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-box p {
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+/* -------- Error Box -------- */
+.error {
+    margin-top: 12px;
+    padding: 10px;
+    background: rgba(255,0,0,0.2);
+    border: 1px solid rgba(255,0,0,0.3);
+    color: #ffbaba;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+/* -------- Chessboard hidden until ready -------- */
+#chessboard {
+    margin-top: 25px;
 }

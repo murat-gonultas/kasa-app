@@ -12,12 +12,24 @@
 
 <body>
 
-    <!-- LOGIN -->
     <div id="login-screen">
-        <h2 class="title">♟ Gizli Giriş</h2>
-        <p class="subtitle">Satranç tahtasında doğru kareye tıkla</p>
-        <div id="chessboard"></div>
+        <div class="login-container">
+            <div class="logo">♟</div>
+            <h1 class="title">Chess Access System</h1>
+
+            <div class="loading-box">
+                <div class="loader"></div>
+                <p>Connecting to server…</p>
+            </div>
+
+            <div id="error-box" class="error hidden">
+                ⚠ Wrong square! Please try again.
+            </div>
+
+            <div id="chessboard" class="hidden"></div>
+        </div>
     </div>
+
 
     <!-- ANA MENÜ -->
     <div id="main-menu" class="hidden">
