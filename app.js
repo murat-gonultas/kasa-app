@@ -47,18 +47,26 @@ function shakeBoard() {
 function checkPattern() {
     if (userPattern.length === 1) {
         if (userPattern[0] === correctPattern[0]) {
-            document.getElementById("login-screen").classList.add("hidden");
-            document.getElementById("main-menu").classList.remove("hidden");
-        } else {
-            const errorBox = document.getElementById("error-box");
-            errorBox.classList.remove("hidden");
+            const board = document.getElementById("chessboard");
 
+            // Başarı animasyonunu başlat
+            board.classList.add("success");
+
+            // Animasyon bitince ekrana geçiş
             setTimeout(() => {
-                errorBox.classList.add("hidden");
-            }, 2000);
+                document.getElementById("login-screen").classList.add("hidden");
+                document.getElementById("main-menu").classList.remove("hidden");
+            }, 800); // animasyon süresi ile aynı
+        }   else {
+                    const errorBox = document.getElementById("error-box");
+                    errorBox.classList.remove("hidden");
 
-            userPattern = [];
-        }
+                    setTimeout(() => {
+                        errorBox.classList.add("hidden");
+                    }, 2000);
+
+                    userPattern = [];
+                }
     }
 }
 

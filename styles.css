@@ -208,3 +208,29 @@ body {
     40%  { box-shadow: 0 0 14px rgba(255,255,255,0.8); transform: scale(1.1); }
     100% { box-shadow: 0 0 0px rgba(255,255,255,0); transform: scale(1); }
 }
+
+/* --- Doğru kare tıklanınca tüm tahtanın parlama animasyonu --- */
+#chessboard.success {
+    animation: boardSuccess 0.8s ease-out forwards;
+}
+
+@keyframes boardSuccess {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0px rgba(0,180,255,0);
+        opacity: 1;
+    }
+    35% {
+        transform: scale(1.07);
+        box-shadow: 0 0 25px rgba(0,180,255,0.8);
+    }
+    70% {
+        transform: scale(0.9);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(0.7);
+        opacity: 0;
+        box-shadow: 0 0 0px rgba(0,180,255,0);
+    }
+}
