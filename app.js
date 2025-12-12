@@ -24,16 +24,24 @@ function createChessboard() {
             square.dataset.pos = coord;
 
             square.addEventListener("click", () => {
-                // Her tıklamada hata mesajını sıfırla
-                document.getElementById("error-box").style.display = "none";
+                // Parlama efekti için class ekle
+                square.classList.add("clicked");
+                setTimeout(() => square.classList.remove("clicked"), 350);
 
                 userPattern.push(coord);
                 checkPattern();
             });
 
+
             board.appendChild(square);
         }
     }
+}
+
+function shakeBoard() {
+    const board = document.getElementById("chessboard");
+    board.classList.add("shake");
+    setTimeout(() => board.classList.remove("shake"), 400);
 }
 
 function checkPattern() {
@@ -42,14 +50,28 @@ function checkPattern() {
             document.getElementById("login-screen").classList.add("hidden");
             document.getElementById("main-menu").classList.remove("hidden");
         } else {
-            document.getElementById("error-box").style.display = "block";
+            const errorBox = document.getElementById("error-box");
+            errorBox.classList.remove("hidden");
+
+            setTimeout(() => {
+                errorBox.classList.add("hidden");
+            }, 2000);
+
             userPattern = [];
         }
     }
 }
 
-createChessboard();
+function resetScreens() {
+    document.querySelectorAll("body > div").forEach(div => {
+        if (div.id !== "login-screen") {
+            div.classList.add("hidden");
+        }
+    });
+}
 
+createChessboard();
+resetScreens();
 
 // ----------------------------
 // EKRAN KONTROLLERİ
